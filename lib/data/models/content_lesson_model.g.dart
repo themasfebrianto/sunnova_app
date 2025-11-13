@@ -1,0 +1,41 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'content_lesson_model.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+ContentLessonModel _$ContentLessonModelFromJson(Map<String, dynamic> json) =>
+    ContentLessonModel(
+      isarId: (json['isarId'] as num?)?.toInt(),
+      id: json['id'] as String,
+      unitId: json['unitId'] as String,
+      title: json['title'] as String,
+      content: json['content'] as String,
+      videoUrl: json['videoUrl'] as String?,
+      audioUrl: json['audioUrl'] as String?,
+      ordering: (json['ordering'] as num).toInt(),
+      requiredTimeInSeconds: (json['requiredTimeInSeconds'] as num).toInt(),
+      xpReward: (json['xpReward'] as num).toInt(),
+      createdAt: DateTime.parse(json['createdAt'] as String),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
+    );
+
+Map<String, dynamic> _$ContentLessonModelToJson(ContentLessonModel instance) =>
+    <String, dynamic>{
+      'isarId': instance.isarId,
+      'id': instance.id,
+      'unitId': instance.unitId,
+      'title': instance.title,
+      'content': instance.content,
+      'videoUrl': instance.videoUrl,
+      'audioUrl': instance.audioUrl,
+      'ordering': instance.ordering,
+      'requiredTimeInSeconds': instance.requiredTimeInSeconds,
+      'xpReward': instance.xpReward,
+      'createdAt': instance.createdAt.toIso8601String(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
+    };
