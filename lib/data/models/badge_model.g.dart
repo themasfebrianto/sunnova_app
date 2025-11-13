@@ -7,7 +7,6 @@ part of 'badge_model.dart';
 // **************************************************************************
 
 BadgeModel _$BadgeModelFromJson(Map<String, dynamic> json) => BadgeModel(
-  isarId: (json['isarId'] as num?)?.toInt(),
   id: json['id'] as String,
   title: json['title'] as String,
   description: json['description'] as String,
@@ -22,7 +21,6 @@ BadgeModel _$BadgeModelFromJson(Map<String, dynamic> json) => BadgeModel(
 
 Map<String, dynamic> _$BadgeModelToJson(BadgeModel instance) =>
     <String, dynamic>{
-      'isarId': instance.isarId,
       'id': instance.id,
       'title': instance.title,
       'description': instance.description,

@@ -9,7 +9,6 @@ part of 'leaderboard_rank_model.dart';
 LeaderboardRankModel _$LeaderboardRankModelFromJson(
   Map<String, dynamic> json,
 ) => LeaderboardRankModel(
-  isarId: (json['isarId'] as num?)?.toInt(),
   rankType: json['rankType'] as String,
   userId: json['userId'] as String,
   scoreValue: (json['scoreValue'] as num).toInt(),
@@ -20,7 +19,6 @@ LeaderboardRankModel _$LeaderboardRankModelFromJson(
 Map<String, dynamic> _$LeaderboardRankModelToJson(
   LeaderboardRankModel instance,
 ) => <String, dynamic>{
-  'isarId': instance.isarId,
   'rankType': instance.rankType,
   'userId': instance.userId,
   'scoreValue': instance.scoreValue,

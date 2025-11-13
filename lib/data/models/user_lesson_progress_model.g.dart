@@ -9,7 +9,6 @@ part of 'user_lesson_progress_model.dart';
 UserLessonProgressModel _$UserLessonProgressModelFromJson(
   Map<String, dynamic> json,
 ) => UserLessonProgressModel(
-  isarId: (json['isarId'] as num?)?.toInt(),
   id: json['id'] as String,
   userId: json['userId'] as String,
   lessonId: json['lessonId'] as String,
@@ -28,7 +27,6 @@ UserLessonProgressModel _$UserLessonProgressModelFromJson(
 Map<String, dynamic> _$UserLessonProgressModelToJson(
   UserLessonProgressModel instance,
 ) => <String, dynamic>{
-  'isarId': instance.isarId,
   'id': instance.id,
   'userId': instance.userId,
   'lessonId': instance.lessonId,

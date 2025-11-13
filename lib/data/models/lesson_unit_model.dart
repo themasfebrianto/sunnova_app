@@ -1,14 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:isar/isar.dart';
 import 'package:sunnova_app/domain/entities/entities.dart';
 
 part 'lesson_unit_model.g.dart';
 
-@Collection()
 @JsonSerializable()
 class LessonUnitModel {
-  Id? isarId;
-
   final String id;
   final String moduleId;
   final String title;
@@ -20,7 +16,6 @@ class LessonUnitModel {
   final DateTime? updatedAt;
 
   LessonUnitModel({
-    this.isarId,
     required this.id,
     required this.moduleId,
     required this.title,

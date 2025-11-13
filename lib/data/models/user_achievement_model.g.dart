@@ -9,7 +9,6 @@ part of 'user_achievement_model.dart';
 UserAchievementModel _$UserAchievementModelFromJson(
   Map<String, dynamic> json,
 ) => UserAchievementModel(
-  isarId: (json['isarId'] as num?)?.toInt(),
   id: json['id'] as String,
   userId: json['userId'] as String,
   badgeId: json['badgeId'] as String,
@@ -20,7 +19,6 @@ UserAchievementModel _$UserAchievementModelFromJson(
 Map<String, dynamic> _$UserAchievementModelToJson(
   UserAchievementModel instance,
 ) => <String, dynamic>{
-  'isarId': instance.isarId,
   'id': instance.id,
   'userId': instance.userId,
   'badgeId': instance.badgeId,

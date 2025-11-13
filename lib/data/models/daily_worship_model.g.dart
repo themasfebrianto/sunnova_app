@@ -8,7 +8,6 @@ part of 'daily_worship_model.dart';
 
 DailyWorshipModel _$DailyWorshipModelFromJson(Map<String, dynamic> json) =>
     DailyWorshipModel(
-      isarId: (json['isarId'] as num?)?.toInt(),
       id: json['id'] as String,
       title: json['title'] as String,
       description: json['description'] as String,
@@ -26,7 +25,6 @@ DailyWorshipModel _$DailyWorshipModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$DailyWorshipModelToJson(DailyWorshipModel instance) =>
     <String, dynamic>{
-      'isarId': instance.isarId,
       'id': instance.id,
       'title': instance.title,
       'description': instance.description,

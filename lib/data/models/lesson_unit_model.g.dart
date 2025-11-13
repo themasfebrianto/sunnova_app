@@ -8,7 +8,6 @@ part of 'lesson_unit_model.dart';
 
 LessonUnitModel _$LessonUnitModelFromJson(Map<String, dynamic> json) =>
     LessonUnitModel(
-      isarId: (json['isarId'] as num?)?.toInt(),
       id: json['id'] as String,
       moduleId: json['moduleId'] as String,
       title: json['title'] as String,
@@ -24,7 +23,6 @@ LessonUnitModel _$LessonUnitModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$LessonUnitModelToJson(LessonUnitModel instance) =>
     <String, dynamic>{
-      'isarId': instance.isarId,
       'id': instance.id,
       'moduleId': instance.moduleId,
       'title': instance.title,

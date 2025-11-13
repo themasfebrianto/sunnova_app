@@ -1,14 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:isar/isar.dart';
 import 'package:sunnova_app/domain/entities/entities.dart';
 
 part 'user_profile_model.g.dart';
 
-@Collection()
 @JsonSerializable()
 class UserProfileModel {
-  Id? isarId;
-
   final String uid;
   final String? email;
   final String? displayName;
@@ -20,7 +16,6 @@ class UserProfileModel {
   final DateTime? lastLoginAt;
 
   UserProfileModel({
-    this.isarId,
     required this.uid,
     this.email,
     this.displayName,

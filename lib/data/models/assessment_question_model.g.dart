@@ -9,7 +9,6 @@ part of 'assessment_question_model.dart';
 AssessmentQuestionModel _$AssessmentQuestionModelFromJson(
   Map<String, dynamic> json,
 ) => AssessmentQuestionModel(
-  isarId: (json['isarId'] as num?)?.toInt(),
   id: json['id'] as String,
   lessonId: json['lessonId'] as String,
   question: json['question'] as String,
@@ -27,7 +26,6 @@ AssessmentQuestionModel _$AssessmentQuestionModelFromJson(
 Map<String, dynamic> _$AssessmentQuestionModelToJson(
   AssessmentQuestionModel instance,
 ) => <String, dynamic>{
-  'isarId': instance.isarId,
   'id': instance.id,
   'lessonId': instance.lessonId,
   'question': instance.question,

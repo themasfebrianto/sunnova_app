@@ -8,7 +8,6 @@ part of 'user_answer_log_model.dart';
 
 UserAnswerLogModel _$UserAnswerLogModelFromJson(Map<String, dynamic> json) =>
     UserAnswerLogModel(
-      isarId: (json['isarId'] as num?)?.toInt(),
       id: json['id'] as String,
       userId: json['userId'] as String,
       questionId: json['questionId'] as String,
@@ -20,7 +19,6 @@ UserAnswerLogModel _$UserAnswerLogModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$UserAnswerLogModelToJson(UserAnswerLogModel instance) =>
     <String, dynamic>{
-      'isarId': instance.isarId,
       'id': instance.id,
       'userId': instance.userId,
       'questionId': instance.questionId,

@@ -1,14 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:isar/isar.dart';
 import 'package:sunnova_app/domain/entities/entities.dart';
 
 part 'badge_model.g.dart';
 
-@Collection()
 @JsonSerializable()
 class BadgeModel {
-  Id? isarId;
-
   final String id;
   final String title;
   final String description;
@@ -19,7 +15,6 @@ class BadgeModel {
   final DateTime? updatedAt;
 
   BadgeModel({
-    this.isarId,
     required this.id,
     required this.title,
     required this.description,

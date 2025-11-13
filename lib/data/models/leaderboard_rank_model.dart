@@ -1,14 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:isar/isar.dart';
 import 'package:sunnova_app/domain/entities/entities.dart';
 
 part 'leaderboard_rank_model.g.dart';
 
-@Collection()
 @JsonSerializable()
 class LeaderboardRankModel {
-  Id? isarId;
-
   final String rankType;
   final String userId;
   final int scoreValue;
@@ -16,7 +12,6 @@ class LeaderboardRankModel {
   final DateTime createdAt;
 
   LeaderboardRankModel({
-    this.isarId,
     required this.rankType,
     required this.userId,
     required this.scoreValue,

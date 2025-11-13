@@ -1,14 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:isar/isar.dart';
 import 'package:sunnova_app/domain/entities/entities.dart';
 
 part 'user_game_stats_model.g.dart';
 
-@Collection()
 @JsonSerializable()
 class UserGameStatsModel {
-  Id? isarId;
-
   final String userId;
   final int totalXp;
   final int level;
@@ -21,7 +17,6 @@ class UserGameStatsModel {
   final DateTime? updatedAt;
 
   UserGameStatsModel({
-    this.isarId,
     required this.userId,
     required this.totalXp,
     required this.level,

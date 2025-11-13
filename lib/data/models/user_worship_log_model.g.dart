@@ -8,7 +8,6 @@ part of 'user_worship_log_model.dart';
 
 UserWorshipLogModel _$UserWorshipLogModelFromJson(Map<String, dynamic> json) =>
     UserWorshipLogModel(
-      isarId: (json['isarId'] as num?)?.toInt(),
       id: json['id'] as String,
       userId: json['userId'] as String,
       worshipId: json['worshipId'] as String,
@@ -23,7 +22,6 @@ UserWorshipLogModel _$UserWorshipLogModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$UserWorshipLogModelToJson(
   UserWorshipLogModel instance,
 ) => <String, dynamic>{
-  'isarId': instance.isarId,
   'id': instance.id,
   'userId': instance.userId,
   'worshipId': instance.worshipId,

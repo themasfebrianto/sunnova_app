@@ -1,14 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:isar/isar.dart';
 import 'package:sunnova_app/domain/entities/entities.dart';
 
 part 'user_lesson_progress_model.g.dart';
 
-@Collection()
 @JsonSerializable()
 class UserLessonProgressModel {
-  Id? isarId;
-
   final String id;
   final String userId;
   final String lessonId;
@@ -20,7 +16,6 @@ class UserLessonProgressModel {
   final DateTime? updatedAt;
 
   UserLessonProgressModel({
-    this.isarId,
     required this.id,
     required this.userId,
     required this.lessonId,

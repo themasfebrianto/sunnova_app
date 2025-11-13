@@ -1,14 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:isar/isar.dart';
 import 'package:sunnova_app/domain/entities/entities.dart';
 
 part 'daily_worship_model.g.dart';
 
-@Collection()
 @JsonSerializable()
 class DailyWorshipModel {
-  Id? isarId;
-
   final String id;
   final String title;
   final String description;
@@ -22,7 +18,6 @@ class DailyWorshipModel {
   final DateTime? updatedAt;
 
   DailyWorshipModel({
-    this.isarId,
     required this.id,
     required this.title,
     required this.description,

@@ -8,7 +8,6 @@ part of 'user_game_stats_model.dart';
 
 UserGameStatsModel _$UserGameStatsModelFromJson(Map<String, dynamic> json) =>
     UserGameStatsModel(
-      isarId: (json['isarId'] as num?)?.toInt(),
       userId: json['userId'] as String,
       totalXp: (json['totalXp'] as num).toInt(),
       level: (json['level'] as num).toInt(),
@@ -27,7 +26,6 @@ UserGameStatsModel _$UserGameStatsModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$UserGameStatsModelToJson(UserGameStatsModel instance) =>
     <String, dynamic>{
-      'isarId': instance.isarId,
       'userId': instance.userId,
       'totalXp': instance.totalXp,
       'level': instance.level,

@@ -8,7 +8,6 @@ part of 'item_shop_model.dart';
 
 ItemShopModel _$ItemShopModelFromJson(Map<String, dynamic> json) =>
     ItemShopModel(
-      isarId: (json['isarId'] as num?)?.toInt(),
       id: json['id'] as String,
       title: json['title'] as String,
       description: json['description'] as String,
@@ -23,7 +22,6 @@ ItemShopModel _$ItemShopModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$ItemShopModelToJson(ItemShopModel instance) =>
     <String, dynamic>{
-      'isarId': instance.isarId,
       'id': instance.id,
       'title': instance.title,
       'description': instance.description,

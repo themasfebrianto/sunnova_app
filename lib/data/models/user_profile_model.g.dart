@@ -8,7 +8,6 @@ part of 'user_profile_model.dart';
 
 UserProfileModel _$UserProfileModelFromJson(Map<String, dynamic> json) =>
     UserProfileModel(
-      isarId: (json['isarId'] as num?)?.toInt(),
       uid: json['uid'] as String,
       email: json['email'] as String?,
       displayName: json['displayName'] as String?,
@@ -24,7 +23,6 @@ UserProfileModel _$UserProfileModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$UserProfileModelToJson(UserProfileModel instance) =>
     <String, dynamic>{
-      'isarId': instance.isarId,
       'uid': instance.uid,
       'email': instance.email,
       'displayName': instance.displayName,
