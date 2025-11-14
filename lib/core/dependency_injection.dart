@@ -9,12 +9,14 @@ import 'package:sunnova_app/domain/repositories/course_repository.dart';
 import 'package:sunnova_app/data/repositories/course_repository_impl.dart';
 import 'package:sunnova_app/data/datasources/course/course_remote_data_source.dart';
 import 'package:sunnova_app/data/datasources/course/course_remote_data_source_impl.dart';
-import 'package:sunnova_app/data/datasources/course/course_local_data_source.dart'; // New import
-import 'package:sunnova_app/data/datasources/course/course_local_data_source_impl.dart'; // New import
+import 'package:sunnova_app/data/datasources/course/course_local_data_source.dart';
+import 'package:sunnova_app/data/datasources/course/course_local_data_source_impl.dart';
 import 'package:sunnova_app/domain/repositories/daily_activity_repository.dart';
 import 'package:sunnova_app/data/repositories/daily_activity_repository_impl.dart';
 import 'package:sunnova_app/data/datasources/daily_activity/daily_activity_remote_data_source.dart';
 import 'package:sunnova_app/data/datasources/daily_activity/daily_activity_remote_data_source_impl.dart';
+import 'package:sunnova_app/data/datasources/daily_activity/daily_activity_local_data_source.dart';
+import 'package:sunnova_app/data/datasources/daily_activity/daily_activity_local_data_source_impl.dart';
 import 'package:sunnova_app/domain/repositories/gamification_repository.dart';
 import 'package:sunnova_app/data/repositories/gamification_repository_impl.dart';
 import 'package:sunnova_app/data/datasources/gamification/gamification_remote_data_source.dart';
@@ -63,7 +65,7 @@ Future<void> setupLocator() async {
 
   // Register CourseRepository
   sl.registerLazySingleton<CourseRepository>(
-    () => CourseRepositoryImpl(remoteDataSource: sl(), localDataSource: sl()), // Updated
+    () => CourseRepositoryImpl(remoteDataSource: sl(), localDataSource: sl()),
   );
 
   // Register CourseRemoteDataSource
@@ -72,13 +74,16 @@ Future<void> setupLocator() async {
   );
 
   // Register CourseLocalDataSource
-  sl.registerLazySingleton<CourseLocalDataSource>( // New
+  sl.registerLazySingleton<CourseLocalDataSource>(
     () => CourseLocalDataSourceImpl(databaseHelper: sl()),
   );
 
   // Register DailyActivityRepository
   sl.registerLazySingleton<DailyActivityRepository>(
-    () => DailyActivityRepositoryImpl(remoteDataSource: sl()),
+    () => DailyActivityRepositoryImpl(
+      remoteDataSource: sl(),
+      localDataSource: sl(),
+    ),
   );
 
   // Register DailyActivityRemoteDataSource
@@ -86,9 +91,17 @@ Future<void> setupLocator() async {
     () => DailyActivityRemoteDataSourceImpl(),
   );
 
+  // Register DailyActivityLocalDataSource
+  sl.registerLazySingleton<DailyActivityLocalDataSource>(
+    () => DailyActivityLocalDataSourceImpl(databaseHelper: sl()),
+  );
+
   // Register GamificationRepository
   sl.registerLazySingleton<GamificationRepository>(
-    () => GamificationRepositoryImpl(remoteDataSource: sl(), localDataSource: sl()),
+    () => GamificationRepositoryImpl(
+      remoteDataSource: sl(),
+      localDataSource: sl(),
+    ),
   );
 
   // Register GamificationRemoteDataSource
@@ -103,7 +116,8 @@ Future<void> setupLocator() async {
 
   // Register AssessmentRepository
   sl.registerLazySingleton<AssessmentRepository>(
-    () => AssessmentRepositoryImpl(remoteDataSource: sl(), localDataSource: sl()),
+    () =>
+        AssessmentRepositoryImpl(remoteDataSource: sl(), localDataSource: sl()),
   );
 
   // Register AssessmentRemoteDataSource

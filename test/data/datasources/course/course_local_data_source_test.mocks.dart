@@ -12,6 +12,7 @@ import 'package:sunnova_app/data/models/assessment_question_model.dart' as _i11;
 import 'package:sunnova_app/data/models/badge_model.dart' as _i8;
 import 'package:sunnova_app/data/models/content_lesson_model.dart' as _i18;
 import 'package:sunnova_app/data/models/course_module_model.dart' as _i16;
+import 'package:sunnova_app/data/models/daily_worship_model.dart' as _i19;
 import 'package:sunnova_app/data/models/item_shop_model.dart' as _i14;
 import 'package:sunnova_app/data/models/leaderboard_rank_model.dart' as _i10;
 import 'package:sunnova_app/data/models/lesson_unit_model.dart' as _i17;
@@ -22,6 +23,7 @@ import 'package:sunnova_app/data/models/user_game_stats_model.dart' as _i6;
 import 'package:sunnova_app/data/models/user_inventory_model.dart' as _i15;
 import 'package:sunnova_app/data/models/user_lesson_progress_model.dart' as _i7;
 import 'package:sunnova_app/data/models/user_profile_model.dart' as _i5;
+import 'package:sunnova_app/data/models/user_worship_log_model.dart' as _i20;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -503,6 +505,67 @@ class MockDatabaseHelper extends _i1.Mock implements _i3.DatabaseHelper {
   _i4.Future<void> clearContentLessons(String? unitId) =>
       (super.noSuchMethod(
             Invocation.method(#clearContentLessons, [unitId]),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> cacheDailyWorshipActivities(
+    List<_i19.DailyWorshipModel>? activities,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#cacheDailyWorshipActivities, [activities]),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
+
+  @override
+  _i4.Future<List<_i19.DailyWorshipModel>> getDailyWorshipActivities() =>
+      (super.noSuchMethod(
+            Invocation.method(#getDailyWorshipActivities, []),
+            returnValue: _i4.Future<List<_i19.DailyWorshipModel>>.value(
+              <_i19.DailyWorshipModel>[],
+            ),
+          )
+          as _i4.Future<List<_i19.DailyWorshipModel>>);
+
+  @override
+  _i4.Future<void> clearDailyWorshipActivities() =>
+      (super.noSuchMethod(
+            Invocation.method(#clearDailyWorshipActivities, []),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> cacheUserWorshipLogs(List<_i20.UserWorshipLogModel>? logs) =>
+      (super.noSuchMethod(
+            Invocation.method(#cacheUserWorshipLogs, [logs]),
+            returnValue: _i4.Future<void>.value(),
+            returnValueForMissingStub: _i4.Future<void>.value(),
+          )
+          as _i4.Future<void>);
+
+  @override
+  _i4.Future<List<_i20.UserWorshipLogModel>> getUserWorshipLogs(
+    String? userId,
+    DateTime? date,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#getUserWorshipLogs, [userId, date]),
+            returnValue: _i4.Future<List<_i20.UserWorshipLogModel>>.value(
+              <_i20.UserWorshipLogModel>[],
+            ),
+          )
+          as _i4.Future<List<_i20.UserWorshipLogModel>>);
+
+  @override
+  _i4.Future<void> clearUserWorshipLogs(String? userId) =>
+      (super.noSuchMethod(
+            Invocation.method(#clearUserWorshipLogs, [userId]),
             returnValue: _i4.Future<void>.value(),
             returnValueForMissingStub: _i4.Future<void>.value(),
           )

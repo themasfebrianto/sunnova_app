@@ -117,8 +117,8 @@ void main() {
             );
             expect(list.first.isLocked, tCourseModuleEntityList.first.isLocked);
             expect(
-              list.first.createdAt?.toIso8601String(),
-              tCourseModuleEntityList.first.createdAt?.toIso8601String(),
+              list.first.createdAt.toIso8601String(),
+              tCourseModuleEntityList.first.createdAt.toIso8601String(),
             );
             expect(
               list.first.updatedAt?.toIso8601String(),
@@ -169,8 +169,8 @@ void main() {
             );
             expect(list.first.isLocked, tCourseModuleEntityList.first.isLocked);
             expect(
-              list.first.createdAt?.toIso8601String(),
-              tCourseModuleEntityList.first.createdAt?.toIso8601String(),
+              list.first.createdAt.toIso8601String(),
+              tCourseModuleEntityList.first.createdAt.toIso8601String(),
             );
             expect(
               list.first.updatedAt?.toIso8601String(),
@@ -239,8 +239,8 @@ void main() {
             );
             expect(list.first.isLocked, tLessonUnitEntityList.first.isLocked);
             expect(
-              list.first.createdAt?.toIso8601String(),
-              tLessonUnitEntityList.first.createdAt?.toIso8601String(),
+              list.first.createdAt.toIso8601String(),
+              tLessonUnitEntityList.first.createdAt.toIso8601String(),
             );
             expect(
               list.first.updatedAt?.toIso8601String(),
@@ -291,8 +291,8 @@ void main() {
             );
             expect(list.first.isLocked, tLessonUnitEntityList.first.isLocked);
             expect(
-              list.first.createdAt?.toIso8601String(),
-              tLessonUnitEntityList.first.createdAt?.toIso8601String(),
+              list.first.createdAt.toIso8601String(),
+              tLessonUnitEntityList.first.createdAt.toIso8601String(),
             );
             expect(
               list.first.updatedAt?.toIso8601String(),
@@ -372,8 +372,8 @@ void main() {
               tContentLessonEntityList.first.xpReward,
             );
             expect(
-              list.first.createdAt?.toIso8601String(),
-              tContentLessonEntityList.first.createdAt?.toIso8601String(),
+              list.first.createdAt.toIso8601String(),
+              tContentLessonEntityList.first.createdAt.toIso8601String(),
             );
             expect(
               list.first.updatedAt?.toIso8601String(),
@@ -435,8 +435,8 @@ void main() {
               tContentLessonEntityList.first.xpReward,
             );
             expect(
-              list.first.createdAt?.toIso8601String(),
-              tContentLessonEntityList.first.createdAt?.toIso8601String(),
+              list.first.createdAt.toIso8601String(),
+              tContentLessonEntityList.first.createdAt.toIso8601String(),
             );
             expect(
               list.first.updatedAt?.toIso8601String(),

@@ -1,4 +1,3 @@
-import 'package:sunnova_app/core/error/error.dart';
 import 'package:sunnova_app/data/datasources/shop/shop_remote_data_source.dart';
 import 'package:sunnova_app/data/models/item_shop_model.dart';
 import 'package:sunnova_app/data/models/user_inventory_model.dart';

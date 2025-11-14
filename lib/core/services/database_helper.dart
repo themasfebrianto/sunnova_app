@@ -11,9 +11,11 @@ import 'package:sunnova_app/data/models/user_answer_log_model.dart';
 import 'package:sunnova_app/data/models/question_hint_model.dart';
 import 'package:sunnova_app/data/models/item_shop_model.dart';
 import 'package:sunnova_app/data/models/user_inventory_model.dart';
-import 'package:sunnova_app/data/models/course_module_model.dart'; // New import
-import 'package:sunnova_app/data/models/lesson_unit_model.dart'; // New import
-import 'package:sunnova_app/data/models/content_lesson_model.dart'; // New import
+import 'package:sunnova_app/data/models/course_module_model.dart';
+import 'package:sunnova_app/data/models/lesson_unit_model.dart';
+import 'package:sunnova_app/data/models/content_lesson_model.dart';
+import 'package:sunnova_app/data/models/daily_worship_model.dart'; // New import
+import 'package:sunnova_app/data/models/user_worship_log_model.dart'; // New import
 import 'dart:convert'; // For JSON encoding/decoding List<String>
 
 class DatabaseHelper {
@@ -31,11 +33,7 @@ class DatabaseHelper {
 
   Future<Database> _initDatabase() async {
     String path = join(await getDatabasesPath(), 'sunnova_app.db');
-    return await openDatabase(
-      path,
-      version: 1,
-      onCreate: _onCreate,
-    );
+    return await openDatabase(path, version: 1, onCreate: _onCreate);
   }
 
   Future<void> _onCreate(Database db, int version) async {
@@ -203,10 +201,40 @@ class DatabaseHelper {
         updatedAt TEXT
       )
     ''');
+    await db.execute('''
+      CREATE TABLE DailyWorship (
+        id TEXT PRIMARY KEY,
+        title TEXT NOT NULL,
+        description TEXT NOT NULL,
+        icon TEXT NOT NULL,
+        category TEXT NOT NULL,
+        gemReward INTEGER NOT NULL,
+        xpReward INTEGER NOT NULL,
+        isRepeatable INTEGER NOT NULL,
+        isDefault INTEGER NOT NULL,
+        createdAt TEXT NOT NULL,
+        updatedAt TEXT
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE UserWorshipLog (
+        id TEXT PRIMARY KEY,
+        userId TEXT NOT NULL,
+        worshipId TEXT NOT NULL,
+        date TEXT NOT NULL,
+        isCompleted INTEGER NOT NULL,
+        completedAt TEXT,
+        currentValue INTEGER NOT NULL
+      )
+    ''');
   }
 
   // Generic method to insert/update a model
-  Future<int> insertOrUpdate(String tableName, Map<String, dynamic> data, String primaryKeyColumn) async {
+  Future<int> insertOrUpdate(
+    String tableName,
+    Map<String, dynamic> data,
+    String primaryKeyColumn,
+  ) async {
     final db = await database;
     return await db.insert(
       tableName,
@@ -216,7 +244,11 @@ class DatabaseHelper {
   }
 
   // Generic method to get a model by primary key
-  Future<Map<String, dynamic>?> getById(String tableName, String primaryKeyColumn, String id) async {
+  Future<Map<String, dynamic>?> getById(
+    String tableName,
+    String primaryKeyColumn,
+    String id,
+  ) async {
     final db = await database;
     List<Map<String, dynamic>> maps = await db.query(
       tableName,
@@ -230,7 +262,11 @@ class DatabaseHelper {
   }
 
   // Generic method to delete a model by primary key
-  Future<int> deleteById(String tableName, String primaryKeyColumn, String id) async {
+  Future<int> deleteById(
+    String tableName,
+    String primaryKeyColumn,
+    String id,
+  ) async {
     final db = await database;
     return await db.delete(
       tableName,
@@ -289,15 +325,13 @@ class DatabaseHelper {
 
   Future<void> clearUserGameStats(String userId) async {
     final db = await database;
-    await db.delete(
-      'UserGameStats',
-      where: 'userId = ?',
-      whereArgs: [userId],
-    );
+    await db.delete('UserGameStats', where: 'userId = ?', whereArgs: [userId]);
   }
 
   // Specific methods for UserLessonProgress
-  Future<void> cacheUserLessonProgress(List<UserLessonProgressModel> progressList) async {
+  Future<void> cacheUserLessonProgress(
+    List<UserLessonProgressModel> progressList,
+  ) async {
     final db = await database;
     for (var progress in progressList) {
       await db.insert(
@@ -308,7 +342,9 @@ class DatabaseHelper {
     }
   }
 
-  Future<List<UserLessonProgressModel>> getUserLessonProgress(String userId) async {
+  Future<List<UserLessonProgressModel>> getUserLessonProgress(
+    String userId,
+  ) async {
     final db = await database;
     List<Map<String, dynamic>> maps = await db.query(
       'UserLessonProgress',
@@ -351,7 +387,9 @@ class DatabaseHelper {
   }
 
   // Specific methods for UserAchievement
-  Future<void> cacheUserAchievements(List<UserAchievementModel> achievements) async {
+  Future<void> cacheUserAchievements(
+    List<UserAchievementModel> achievements,
+  ) async {
     final db = await database;
     for (var achievement in achievements) {
       await db.insert(
@@ -393,7 +431,9 @@ class DatabaseHelper {
     }
   }
 
-  Future<List<LeaderboardRankModel>> getLeaderboardRanks(String rankType) async {
+  Future<List<LeaderboardRankModel>> getLeaderboardRanks(
+    String rankType,
+  ) async {
     final db = await database;
     List<Map<String, dynamic>> maps = await db.query(
       'LeaderboardRank',
@@ -413,12 +453,16 @@ class DatabaseHelper {
   }
 
   // Specific methods for AssessmentQuestion
-  Future<void> cacheAssessmentQuestions(List<AssessmentQuestionModel> questions) async {
+  Future<void> cacheAssessmentQuestions(
+    List<AssessmentQuestionModel> questions,
+  ) async {
     final db = await database;
     await db.transaction((txn) async {
       for (var question in questions) {
         final questionMap = question.toJson();
-        questionMap['options'] = jsonEncode(question.options); // Encode List<String>
+        questionMap['options'] = jsonEncode(
+          question.options,
+        ); // Encode List<String>
         await txn.insert(
           'AssessmentQuestion',
           questionMap,
@@ -428,7 +472,9 @@ class DatabaseHelper {
     });
   }
 
-  Future<List<AssessmentQuestionModel>> getAssessmentQuestions(String lessonId) async {
+  Future<List<AssessmentQuestionModel>> getAssessmentQuestions(
+    String lessonId,
+  ) async {
     final db = await database;
     List<Map<String, dynamic>> maps = await db.query(
       'AssessmentQuestion',
@@ -436,7 +482,9 @@ class DatabaseHelper {
       whereArgs: [lessonId],
     );
     return maps.map((map) {
-      map['options'] = List<String>.from(jsonDecode(map['options'] as String)); // Decode List<String>
+      map['options'] = List<String>.from(
+        jsonDecode(map['options'] as String),
+      ); // Decode List<String>
       return AssessmentQuestionModel.fromJson(map);
     }).toList();
   }
@@ -460,7 +508,10 @@ class DatabaseHelper {
     );
   }
 
-  Future<UserAnswerLogModel?> getUserAnswerLog(String userId, String questionId) async {
+  Future<UserAnswerLogModel?> getUserAnswerLog(
+    String userId,
+    String questionId,
+  ) async {
     final db = await database;
     List<Map<String, dynamic>> maps = await db.query(
       'UserAnswerLog',
@@ -563,11 +614,7 @@ class DatabaseHelper {
 
   Future<void> clearUserInventory(String userId) async {
     final db = await database;
-    await db.delete(
-      'UserInventory',
-      where: 'userId = ?',
-      whereArgs: [userId],
-    );
+    await db.delete('UserInventory', where: 'userId = ?', whereArgs: [userId]);
   }
 
   // Specific methods for CourseModule
@@ -617,11 +664,7 @@ class DatabaseHelper {
 
   Future<void> clearLessonUnits(String moduleId) async {
     final db = await database;
-    await db.delete(
-      'LessonUnit',
-      where: 'moduleId = ?',
-      whereArgs: [moduleId],
-    );
+    await db.delete('LessonUnit', where: 'moduleId = ?', whereArgs: [moduleId]);
   }
 
   // Specific methods for ContentLesson
@@ -648,10 +691,65 @@ class DatabaseHelper {
 
   Future<void> clearContentLessons(String unitId) async {
     final db = await database;
-    await db.delete(
-      'ContentLesson',
-      where: 'unitId = ?',
-      whereArgs: [unitId],
+    await db.delete('ContentLesson', where: 'unitId = ?', whereArgs: [unitId]);
+  }
+
+  // Specific methods for DailyWorship
+  Future<void> cacheDailyWorshipActivities(
+    List<DailyWorshipModel> activities,
+  ) async {
+    final db = await database;
+    for (var activity in activities) {
+      await db.insert(
+        'DailyWorship',
+        activity.toJson(),
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
+    }
+  }
+
+  Future<List<DailyWorshipModel>> getDailyWorshipActivities() async {
+    final db = await database;
+    List<Map<String, dynamic>> maps = await db.query('DailyWorship');
+    return maps.map((map) => DailyWorshipModel.fromJson(map)).toList();
+  }
+
+  Future<void> clearDailyWorshipActivities() async {
+    final db = await database;
+    await db.delete('DailyWorship');
+  }
+
+  // Specific methods for UserWorshipLog
+  Future<void> cacheUserWorshipLogs(List<UserWorshipLogModel> logs) async {
+    final db = await database;
+    for (var log in logs) {
+      await db.insert(
+        'UserWorshipLog',
+        log.toJson(),
+        conflictAlgorithm: ConflictAlgorithm.replace,
+      );
+    }
+  }
+
+  Future<List<UserWorshipLogModel>> getUserWorshipLogs(
+    String userId,
+    DateTime date,
+  ) async {
+    final db = await database;
+    String dateOnly = date
+        .toIso8601String()
+        .split('T')
+        .first; // ambil yyyy-MM-dd
+    List<Map<String, dynamic>> maps = await db.query(
+      'UserWorshipLog',
+      where: 'userId = ? AND date LIKE ?',
+      whereArgs: [userId, '$dateOnly%'],
     );
+    return maps.map((map) => UserWorshipLogModel.fromJson(map)).toList();
+  }
+
+  Future<void> clearUserWorshipLogs(String userId) async {
+    final db = await database;
+    await db.delete('UserWorshipLog', where: 'userId = ?', whereArgs: [userId]);
   }
 }

@@ -1,8 +1,12 @@
+import 'package:sunnova_app/core/error/error.dart';
 import 'package:sunnova_app/data/datasources/daily_activity/daily_activity_remote_data_source.dart';
 import 'package:sunnova_app/data/models/daily_worship_model.dart';
 import 'package:sunnova_app/data/models/user_worship_log_model.dart';
 
-class DailyActivityRemoteDataSourceImpl implements DailyActivityRemoteDataSource {
+class DailyActivityRemoteDataSourceImpl
+    implements DailyActivityRemoteDataSource {
+  final DateTime _fixedDateTime = DateTime.utc(2023, 1, 1);
+
   @override
   Future<List<DailyWorshipModel>> getDailyWorships() async {
     await Future.delayed(const Duration(seconds: 1)); // Simulate network delay
@@ -17,7 +21,7 @@ class DailyActivityRemoteDataSourceImpl implements DailyActivityRemoteDataSource
         xpReward: 10,
         isRepeatable: false,
         isDefault: true,
-        createdAt: DateTime.now(),
+        createdAt: _fixedDateTime,
       ),
       DailyWorshipModel(
         id: 'dw2',
@@ -29,7 +33,7 @@ class DailyActivityRemoteDataSourceImpl implements DailyActivityRemoteDataSource
         xpReward: 20,
         isRepeatable: true,
         isDefault: true,
-        createdAt: DateTime.now(),
+        createdAt: _fixedDateTime,
       ),
     ];
   }
@@ -43,10 +47,12 @@ class DailyActivityRemoteDataSourceImpl implements DailyActivityRemoteDataSource
   }
 
   @override
-  Future<List<UserWorshipLogModel>> getUserWorshipLogs(String userId, DateTime date) async {
+  Future<List<UserWorshipLogModel>> getUserWorshipLogs(
+    String userId,
+    DateTime date,
+  ) async {
     await Future.delayed(const Duration(seconds: 1)); // Simulate network delay
-    // Simulate returning some dummy data
-    if (userId == 'test_user_id' && date.day == DateTime.now().day) {
+    if (userId == 'test_user_id' && date == _fixedDateTime) {
       return [
         UserWorshipLogModel(
           id: 'uwl1',
@@ -54,11 +60,12 @@ class DailyActivityRemoteDataSourceImpl implements DailyActivityRemoteDataSource
           worshipId: 'dw1',
           date: date,
           isCompleted: true,
-          completedAt: DateTime.now(),
+          completedAt: _fixedDateTime,
           currentValue: 1,
         ),
       ];
+    } else {
+      throw ServerException(message: 'Invalid userId or date');
     }
-    return [];
   }
 }

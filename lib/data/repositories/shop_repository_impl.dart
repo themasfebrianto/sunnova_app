@@ -5,7 +5,6 @@ import 'package:sunnova_app/domain/entities/user_inventory.dart';
 import 'package:sunnova_app/domain/repositories/shop_repository.dart';
 import 'package:sunnova_app/data/datasources/shop/shop_remote_data_source.dart';
 import 'package:sunnova_app/data/datasources/shop/shop_local_data_source.dart';
-import 'package:sunnova_app/data/models/user_inventory_model.dart';
 
 class ShopRepositoryImpl implements ShopRepository {
   final ShopRemoteDataSource remoteDataSource;

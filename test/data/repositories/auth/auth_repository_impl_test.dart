@@ -7,7 +7,6 @@ import 'package:sunnova_app/data/datasources/auth/auth_local_data_source.dart';
 import 'package:sunnova_app/data/datasources/auth/auth_remote_data_source.dart';
 import 'package:sunnova_app/data/models/user_profile_model.dart';
 import 'package:sunnova_app/data/repositories/auth_repository_impl.dart';
-import 'package:sunnova_app/domain/entities/user_profile.dart';
 
 import 'auth_repository_impl_test.mocks.dart'; // Generated mock file
 
